@@ -1,0 +1,99 @@
+{
+	"HLCore:Server": {
+		"prefix": ["hlcore:server"],
+		"body": ["HLCore = nil", "TriggerEvent('HLCore:GetObject', function(obj) HLCore = obj end)", ""],
+		"description": "Server side code om de HLCore in te laden."
+	},
+	"HLCore:Client": {
+		"prefix": ["hlcore:client", "hlcore:baseevents", "onplayerloaded"],
+		"body": [
+			"HLCore = nil",
+			"",
+			"Citizen.CreateThread(function()",
+			"    while HLCore == nil do",
+			"        TriggerEvent('HLCore:GetObject', function(obj) HLCore = obj end)",
+			"        Citizen.Wait(20)",
+			"    end",
+			"end)",
+			"",
+			"local PlayerJob = {}",
+			"local isLoggedIn = false",
+			"",
+			"RegisterNetEvent('HLCore:Client:OnPlayerLoaded')",
+			"AddEventHandler('HLCore:Client:OnPlayerLoaded', function()",
+			"    isLoggedIn = true",
+			"    PlayerJob = HLCore.Functions.GetPlayerData().job",
+			"end)",
+			"",
+			"RegisterNetEvent('HLCore:Client:OnPlayerUnload')",
+			"AddEventHandler('HLCore:Client:OnPlayerUnload', function()",
+			"    isLoggedIn = false",
+			"end)",
+			"",
+			"RegisterNetEvent('HLCore:Client:OnJobUpdate')",
+			"AddEventHandler('HLCore:Client:OnJobUpdate', function(JobInfo)",
+			"    PlayerJob = JobInfo",
+			"end)",
+			""
+		],
+		"description": "Client side code om de HLCore en base events in te laden."
+	},
+
+	"Notify:Server": {
+		"prefix": ["notify:server"],
+		"body": ["TriggerClientEvent(\"HLCore:Notify\", source, \"${1:message}\", \"${2:type}\", 3500)", ""],
+		"description": "Server side code om een notificatie te tonen."
+	},
+	"Notify:Client": {
+		"prefix": ["notify:client", "HLCore.Functions."],
+		"body": ["HLCore.Functions.Notify(\"${1:message}\", \"${2:type}\")", ""],
+		"description": "Client side code om een notificatie te tonen."
+	},
+
+	"eye:setup": {
+		"prefix": ["hl-eye", "eye", "hleye", "registerinteraction"],
+		"body": [
+			"RegisterNetEvent(\"HLCore:Client:OnPlayerLoaded\")",
+			"AddEventHandler(\"HLCore:Client:OnPlayerLoaded\", function()",
+			"    exports[\"hl-eye\"]:RegisterInteraction(\"${1:Display name}\", \"fas ${2:icon}\", CheckFun, ExecuteFun, \"${3:key}\")",
+			"end)",
+			"",
+			"function CheckFun()",
+			"    if isLoggedIn then",
+			"        return true",
+			"    end",
+			"",
+			"    return false",
+			"end",
+			"",
+			"function ExecuteFun()",
+			"    HLCore.Functions.Notify(\"Oogje werkt!\", \"info\")",
+			"end",
+			""
+		],
+		"description": "Boilerplate code voor een HL-EYE interaction"
+	},
+
+	"CreateCallback": {
+		"prefix": ["CreateCallback", "RegisterCallback", "HLCore.Functions.CreateCallback"],
+		"body": [
+			"HLCore.Functions.CreateCallback('hl-${1:ResourceName}:server:${2:CallbackName}', function(source, cb, ...)",
+			"    local src = source",
+			"    local Player = HLCore.Functions.GetPlayer(src)",
+			"",
+			"    cb(true)",
+			"end)"
+		],
+		"description": "Registeer een nieuwe callback"
+	},
+
+	"TriggerCallback": {
+		"prefix": ["TriggerCallback", "HLCore.Functions.TriggerCallback"],
+		"body": [
+			"HLCore.Functions.TriggerCallback('hl-${1:ResourceName}:server:${2:CallbackName}', function(retval)",
+			"    ${1}",
+			"end)"
+		],
+		"description": "Trigger een callback"
+	}
+}

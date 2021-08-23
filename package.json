@@ -1,0 +1,22 @@
+{
+	"publisher": "Foxxite",
+	"name": "hl-snippets",
+	"displayName": "HL Snippets",
+	"description": "Code snippets for the HLCore and resources",
+	"version": "0.0.1",
+	"icon": "images/logo.png",
+	"engines": {
+		"vscode": "^1.59.0"
+	},
+	"categories": [
+		"Snippets"
+	],
+	"contributes": {
+		"snippets": [
+			{
+				"language": "lua",
+				"path": "./snippets/snippets.code-snippets"
+			}
+		]
+	}
+}
