@@ -95,5 +95,19 @@
 			"end)"
 		],
 		"description": "Trigger een callback"
+	},
+
+	"CreateUseableItem": {
+		"prefix": "HLCore.Functions.CreateUseableItem",
+
+		"body": [
+			"HLCore.Functions.CreateUseableItem(${1:Item Naam}, function(source, item)",
+			"    local Player = HLCore.Functions.GetPlayer(source)",
+			"    if Player.Functions.RemoveItem(item.name, 1, item.slot) then",
+			"        TriggerClientEvent(\"${2:Resource Naam}:client:Use\", source)",
+			"    end",
+			"end)"
+		],
+		"description": "Makes an item useable."
 	}
 }
