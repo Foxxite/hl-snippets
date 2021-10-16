@@ -50,12 +50,18 @@
 		"description": "Client side code om een notificatie te tonen."
 	},
 
+	"ShowHelp": {
+		"prefix": ["ShowHelp", "HLCore.Functions."],
+		"body": ["HLCore.Functions.ShowHelp(\"${1:message}\", \"${2:type}\")", ""],
+		"description": "Client side code ter vervanging voor DrawText3D."
+	},
+
 	"eye:setup": {
-		"prefix": ["hl-eye", "eye", "hleye", "registerinteraction"],
+		"prefix": ["hl-eye", "eye", "hleye"],
 		"body": [
 			"RegisterNetEvent(\"HLCore:Client:OnPlayerLoaded\")",
 			"AddEventHandler(\"HLCore:Client:OnPlayerLoaded\", function()",
-			"    exports[\"hl-eye\"]:RegisterInteraction(\"${1:Display name}\", \"fas ${2:icon}\", CheckFun, ExecuteFun, \"${3:key}\")",
+			"    exports[\"hl-eye\"]:RegisterInteraction(\"${1:Display name}\", \"fas fa-${2:icon}\", ${3:CheckFun}, ${4:ExecuteFun}, \"${5:key}\")",
 			"end)",
 			"",
 			"function CheckFun()",
@@ -73,6 +79,14 @@
 		],
 		"description": "Boilerplate code voor een HL-EYE interaction"
 	},
+	"eye:registerinteraction": {
+		"prefix": ["hl-eye", "eye", "hleye", "registerinteraction"],
+		"body": [
+			"exports[\"hl-eye\"]:RegisterInteraction(\"${1:Display name}\", \"fas fa-${2:icon}\", ${3:CheckFun}, ${4:ExecuteFun}, \"${5:key}\")",
+			""
+		],
+		"description": "Register een HL-EYE interaction"
+	},
 
 	"CreateCallback": {
 		"prefix": ["CreateCallback", "RegisterCallback", "HLCore.Functions.CreateCallback"],
@@ -82,7 +96,8 @@
 			"    local Player = HLCore.Functions.GetPlayer(src)",
 			"",
 			"    cb(true)",
-			"end)"
+			"end)",
+			""
 		],
 		"description": "Registeer een nieuwe callback"
 	},
@@ -92,7 +107,8 @@
 		"body": [
 			"HLCore.Functions.TriggerCallback('hl-${1:ResourceName}:server:${2:CallbackName}', function(retval)",
 			"    ${1}",
-			"end)"
+			"end)",
+			""
 		],
 		"description": "Trigger een callback"
 	},
@@ -106,8 +122,26 @@
 			"    if Player.Functions.RemoveItem(item.name, 1, item.slot) then",
 			"        TriggerClientEvent(\"${2:Resource Naam}:client:Use\", source)",
 			"    end",
-			"end)"
+			"end)",
+			""
 		],
 		"description": "Makes an item useable."
+	},
+
+	"CommandAdd": {
+		"prefix": "HLCore.Commands.Add, Add, Command, RegisterCommand, AddCommand",
+
+		"body": [
+			"HLCore.Commands.Add${1:Command Naam}, ${2:Command Desc}, {{name={3:arg name}, help={4: arg help}}, false, function(source, args)",
+			"",
+			"end, ${5:perm})",
+			""
+		],
+		"description": "Register a new command."
+	},
+
+	"Player": {
+		"body": ["local Player = HLCore.Functions.GetPlayer(source)", ""],
+		"description": "Get the player object"
 	}
 }

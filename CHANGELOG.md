@@ -6,4 +6,16 @@ All notable changes to the HL Snippets" extension will be documented in this fil
 
 ## 0.0.1
 
--   Initial release
+-   Initial release of HL Snippets
+
+## 0.0.2
+
+-   Added Register Interaction for HL-EYE
+
+## 0.0.3
+
+-   Better UX register interaction
+
+## 0.0.4
+
+-   Added ShowHelp
