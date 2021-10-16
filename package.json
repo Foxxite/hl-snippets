@@ -3,7 +3,7 @@
 	"name": "hl-snippets",
 	"displayName": "HL Snippets",
 	"description": "Code snippets for the HLCore and resources",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"icon": "images/logo.png",
 	"repository": {
 		"type": "git",

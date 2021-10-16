@@ -117,7 +117,7 @@
 		"prefix": "HLCore.Functions.CreateUseableItem",
 
 		"body": [
-			"HLCore.Functions.CreateUseableItem(${1:Item Naam}, function(source, item)",
+			"HLCore.Functions.CreateUseableItem('${1:Item Naam}', function(source, item)",
 			"    local Player = HLCore.Functions.GetPlayer(source)",
 			"    if Player.Functions.RemoveItem(item.name, 1, item.slot) then",
 			"        TriggerClientEvent(\"${2:Resource Naam}:client:Use\", source)",
@@ -129,18 +129,19 @@
 	},
 
 	"CommandAdd": {
-		"prefix": "HLCore.Commands.Add, Add, Command, RegisterCommand, AddCommand",
+		"prefix": ["HLCore.Commands.Add", "Add", "Command", "RegisterCommand", "AddCommand"],
 
 		"body": [
-			"HLCore.Commands.Add${1:Command Naam}, ${2:Command Desc}, {{name={3:arg name}, help={4: arg help}}, false, function(source, args)",
+			"HLCore.Commands.Add('${1:Command Naam}', '${2:Command Desc}', {{name='${3:arg name}', help='${4:arg help}'}, false, function(source, args)",
 			"",
-			"end, ${5:perm})",
+			"end, '${5:perm}')",
 			""
 		],
 		"description": "Register a new command."
 	},
 
 	"Player": {
+		"prefix": ["Player", "GetPlayer"],
 		"body": ["local Player = HLCore.Functions.GetPlayer(source)", ""],
 		"description": "Get the player object"
 	}
