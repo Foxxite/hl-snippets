@@ -88,6 +88,15 @@
 		"description": "Register een HL-EYE interaction"
 	},
 
+	"control:addcontrolablefield": {
+		"prefix": ["hl-control", "control", "hlcontrol", "addfield"],
+		"body": [
+			"exports[\"hl-control\"]:AddControlableField(GetCurrentResourceName(), '${1:name}', function() return ${2:Config.Cooldown} end, function(val) ${2:Config.Cooldown} = val end)",
+			""
+		],
+		"description": "Register een HL-EYE interaction"
+	},
+
 	"CreateCallback": {
 		"prefix": ["CreateCallback", "RegisterCallback", "HLCore.Functions.CreateCallback"],
 		"body": [

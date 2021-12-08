@@ -19,3 +19,9 @@ All notable changes to the HL Snippets" extension will be documented in this fil
 ## 0.0.4
 
 -   Added ShowHelp
+
+## 0.0.7
+
+-   Added Player getter
+-   Fixed a few issues
+-   Added Control Panel field adder
