@@ -1,22 +1,22 @@
 <!-- @format -->
 
-# HL Snippets
+# LM Snippets
 
-HL Snippets is een extention voor het development team van HaarlemRP.
+LM Snippets is een extention voor het development team van HaarlemRP.
 
 <!-- @format -->
 
 # Change Log
 
-All notable changes to the HL Snippets" extension will be documented in this file.
+All notable changes to the LM Snippets" extension will be documented in this file.
 
 ## 0.0.1
 
--   Initial release of HL Snippets
+-   Initial release of LM Snippets
 
 ## 0.0.2
 
--   Added Register Interaction for HL-EYE
+-   Added Register Interaction for LM-EYE
 
 ## 0.0.3
 

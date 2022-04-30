@@ -1,13 +1,13 @@
 {
 	"publisher": "Foxxite",
-	"name": "hl-snippets",
-	"displayName": "HL Snippets",
-	"description": "Code snippets for the HLCore and resources",
-	"version": "0.0.7",
+	"name": "lm-snippets",
+	"displayName": "LM Snippets",
+	"description": "Code snippets for the LMCore and resources",
+	"version": "0.0.1",
 	"icon": "images/logo.png",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Foxxite/hl-snippets.git"
+		"url": "https://github.com/Foxxite/lm-snippets.git"
 	},
 	"engines": {
 		"vscode": "^1.59.0"

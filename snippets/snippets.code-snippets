@@ -1,108 +1,69 @@
 {
-	"HLCore:Server": {
-		"prefix": ["hlcore:server"],
-		"body": ["HLCore = nil", "TriggerEvent('HLCore:GetObject', function(obj) HLCore = obj end)", ""],
-		"description": "Server side code om de HLCore in te laden."
+	"LMCore:Server": {
+		"prefix": ["lmcore:server"],
+		"body": ["LMCore = exports['lm-core']:GetCoreObject()", ""],
+		"description": "Server side code om de LMCore in te laden."
 	},
-	"HLCore:Client": {
-		"prefix": ["hlcore:client", "hlcore:baseevents", "onplayerloaded"],
+	"LMCore:Client": {
+		"prefix": ["lmcore:client", "lmcore:baseevents", "onplayerloaded"],
 		"body": [
-			"HLCore = nil",
-			"",
-			"Citizen.CreateThread(function()",
-			"    while HLCore == nil do",
-			"        TriggerEvent('HLCore:GetObject', function(obj) HLCore = obj end)",
-			"        Citizen.Wait(20)",
-			"    end",
-			"end)",
+			"LMCore = exports['lm-core']:GetCoreObject()",
 			"",
 			"local PlayerJob = {}",
 			"local isLoggedIn = false",
 			"",
-			"RegisterNetEvent('HLCore:Client:OnPlayerLoaded')",
-			"AddEventHandler('HLCore:Client:OnPlayerLoaded', function()",
+			"RegisterNetEvent('LMCore:Client:OnPlayerLoaded')",
+			"AddEventHandler('LMCore:Client:OnPlayerLoaded', function()",
 			"    isLoggedIn = true",
-			"    PlayerJob = HLCore.Functions.GetPlayerData().job",
+			"    PlayerJob = LMCore.Functions.GetPlayerData().job",
 			"end)",
 			"",
-			"RegisterNetEvent('HLCore:Client:OnPlayerUnload')",
-			"AddEventHandler('HLCore:Client:OnPlayerUnload', function()",
+			"RegisterNetEvent('LMCore:Client:OnPlayerUnload')",
+			"AddEventHandler('LMCore:Client:OnPlayerUnload', function()",
 			"    isLoggedIn = false",
 			"end)",
 			"",
-			"RegisterNetEvent('HLCore:Client:OnJobUpdate')",
-			"AddEventHandler('HLCore:Client:OnJobUpdate', function(JobInfo)",
+			"RegisterNetEvent('LMCore:Client:OnJobUpdate')",
+			"AddEventHandler('LMCore:Client:OnJobUpdate', function(JobInfo)",
 			"    PlayerJob = JobInfo",
 			"end)",
 			""
 		],
-		"description": "Client side code om de HLCore en base events in te laden."
+		"description": "Client side code om de LMCore en base events in te laden."
 	},
 
 	"Notify:Server": {
 		"prefix": ["notify:server"],
-		"body": ["TriggerClientEvent(\"HLCore:Notify\", source, \"${1:message}\", \"${2:type}\", 3500)", ""],
+		"body": ["TriggerClientEvent(\"LMCore:Notify\", source, \"${1:message}\", \"${2:type}\", 3500)", ""],
 		"description": "Server side code om een notificatie te tonen."
 	},
 	"Notify:Client": {
-		"prefix": ["notify:client", "HLCore.Functions."],
-		"body": ["HLCore.Functions.Notify(\"${1:message}\", \"${2:type}\")", ""],
+		"prefix": ["notify:client", "LMCore.Functions."],
+		"body": ["LMCore.Functions.Notify(\"${1:message}\", \"${2:type}\")", ""],
 		"description": "Client side code om een notificatie te tonen."
 	},
 
 	"ShowHelp": {
-		"prefix": ["ShowHelp", "HLCore.Functions."],
-		"body": ["HLCore.Functions.ShowHelp(\"${1:message}\", \"${2:type}\")", ""],
+		"prefix": ["ShowHelp", "LMCore.Functions."],
+		"body": ["LMCore.Functions.ShowHelp(\"${1:message}\", \"${2:type}\")", ""],
 		"description": "Client side code ter vervanging voor DrawText3D."
 	},
 
-	"eye:setup": {
-		"prefix": ["hl-eye", "eye", "hleye"],
-		"body": [
-			"RegisterNetEvent(\"HLCore:Client:OnPlayerLoaded\")",
-			"AddEventHandler(\"HLCore:Client:OnPlayerLoaded\", function()",
-			"    exports[\"hl-eye\"]:RegisterInteraction(\"${1:Display name}\", \"fas fa-${2:icon}\", ${3:CheckFun}, ${4:ExecuteFun}, \"${5:key}\")",
-			"end)",
-			"",
-			"function CheckFun()",
-			"    if isLoggedIn then",
-			"        return true",
-			"    end",
-			"",
-			"    return false",
-			"end",
-			"",
-			"function ExecuteFun()",
-			"    HLCore.Functions.Notify(\"Oogje werkt!\", \"info\")",
-			"end",
-			""
-		],
-		"description": "Boilerplate code voor een HL-EYE interaction"
-	},
-	"eye:registerinteraction": {
-		"prefix": ["hl-eye", "eye", "hleye", "registerinteraction"],
-		"body": [
-			"exports[\"hl-eye\"]:RegisterInteraction(\"${1:Display name}\", \"fas fa-${2:icon}\", ${3:CheckFun}, ${4:ExecuteFun}, \"${5:key}\")",
-			""
-		],
-		"description": "Register een HL-EYE interaction"
-	},
-
 	"control:addcontrolablefield": {
-		"prefix": ["hl-control", "control", "hlcontrol", "addfield"],
+		"prefix": ["lm-control", "control", "lmcontrol", "addfield"],
 		"body": [
-			"exports[\"hl-control\"]:AddControlableField(GetCurrentResourceName(), '${1:name}', function() return ${2:Config.Cooldown} end, function(val) ${2:Config.Cooldown} = val end)",
+			"exports[\"lm-control\"]:AddControlableField(GetCurrentResourceName(), '${1:name}', function() return ${2:Config.Cooldown} end, function(val) ${2:Config.Cooldown} = val end)",
 			""
 		],
-		"description": "Register een HL-EYE interaction"
+		"description": "Register een LM-EYE interaction"
 	},
 
 	"CreateCallback": {
-		"prefix": ["CreateCallback", "RegisterCallback", "HLCore.Functions.CreateCallback"],
+		"prefix": ["CreateCallback", "RegisterCallback", "LMCore.Functions.CreateCallback"],
 		"body": [
-			"HLCore.Functions.CreateCallback('hl-${1:ResourceName}:server:${2:CallbackName}', function(source, cb, ...)",
+			"LMCore.Functions.CreateCallback('lm-${1:ResourceName}:server:${2:CallbackName}', function(source, cb, ...)",
 			"    local src = source",
-			"    local Player = HLCore.Functions.GetPlayer(src)",
+			"    local Player = LMCore.Functions.GetPlayer(src)",
 			"",
 			"    cb(true)",
 			"end)",
@@ -112,9 +73,9 @@
 	},
 
 	"TriggerCallback": {
-		"prefix": ["TriggerCallback", "HLCore.Functions.TriggerCallback"],
+		"prefix": ["TriggerCallback", "LMCore.Functions.TriggerCallback"],
 		"body": [
-			"HLCore.Functions.TriggerCallback('hl-${1:ResourceName}:server:${2:CallbackName}', function(retval)",
+			"LMCore.Functions.TriggerCallback('lm-${1:ResourceName}:server:${2:CallbackName}', function(retval)",
 			"    ${1}",
 			"end)",
 			""
@@ -123,11 +84,11 @@
 	},
 
 	"CreateUseableItem": {
-		"prefix": "HLCore.Functions.CreateUseableItem",
+		"prefix": "LMCore.Functions.CreateUseableItem",
 
 		"body": [
-			"HLCore.Functions.CreateUseableItem('${1:Item Naam}', function(source, item)",
-			"    local Player = HLCore.Functions.GetPlayer(source)",
+			"LMCore.Functions.CreateUseableItem('${1:Item Naam}', function(source, item)",
+			"    local Player = LMCore.Functions.GetPlayer(source)",
 			"    if Player.Functions.RemoveItem(item.name, 1, item.slot) then",
 			"        TriggerClientEvent(\"${2:Resource Naam}:client:Use\", source)",
 			"    end",
@@ -138,10 +99,10 @@
 	},
 
 	"CommandAdd": {
-		"prefix": ["HLCore.Commands.Add", "Add", "Command", "RegisterCommand", "AddCommand"],
+		"prefix": ["LMCore.Commands.Add", "Add", "Command", "RegisterCommand", "AddCommand"],
 
 		"body": [
-			"HLCore.Commands.Add('${1:Command Naam}', '${2:Command Desc}', {{name='${3:arg name}', help='${4:arg help}'}, false, function(source, args)",
+			"LMCore.Commands.Add('${1:Command Naam}', '${2:Command Desc}', {{name='${3:arg name}', help='${4:arg help}'}}, false, function(source, args)",
 			"",
 			"end, '${5:perm}')",
 			""
@@ -151,7 +112,7 @@
 
 	"Player": {
 		"prefix": ["Player", "GetPlayer"],
-		"body": ["local Player = HLCore.Functions.GetPlayer(source)", ""],
+		"body": ["local Player = LMCore.Functions.GetPlayer(source)", ""],
 		"description": "Get the player object"
 	}
 }
