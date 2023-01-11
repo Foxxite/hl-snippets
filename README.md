@@ -1,5 +1,5 @@
 <!-- @format -->
 
-# LM Snippets
+# Nexus Snippets
 
-LM Snippets is een extention voor het development team van Lemon.
+Nexus Snippets is een extention voor het development team van Nexus.

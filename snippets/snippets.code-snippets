@@ -1,69 +1,69 @@
 {
-	"LMCore:Server": {
-		"prefix": ["lmcore:server"],
-		"body": ["LMCore = exports['lm-core']:GetCoreObject()", ""],
-		"description": "Server side code om de LMCore in te laden."
+	"NXCore:Server": {
+		"prefix": ["nxcore:server", "nxcore:client"],
+		"body": ["NXCore = exports['nx-core']:GetCoreObject()", ""],
+		"description": "Code om de NXCore in te laden."
 	},
-	"LMCore:Client": {
-		"prefix": ["lmcore:client", "lmcore:baseevents", "onplayerloaded"],
+	"NXCore:BaseEvents": {
+		"prefix": ["nxcore:baseevents", "onplayerloaded"],
 		"body": [
-			"LMCore = exports['lm-core']:GetCoreObject()",
+			"NXCore = exports['nx-core']:GetCoreObject()",
 			"",
 			"local PlayerJob = {}",
 			"local isLoggedIn = false",
 			"",
-			"RegisterNetEvent('LMCore:Client:OnPlayerLoaded')",
-			"AddEventHandler('LMCore:Client:OnPlayerLoaded', function()",
+			"RegisterNetEvent('NXCore:Client:OnPlayerLoaded')",
+			"AddEventHandler('NXCore:Client:OnPlayerLoaded', function()",
 			"    isLoggedIn = true",
-			"    PlayerJob = LMCore.Functions.GetPlayerData().job",
+			"    PlayerJob = NXCore.Functions.GetPlayerData().job",
 			"end)",
 			"",
-			"RegisterNetEvent('LMCore:Client:OnPlayerUnload')",
-			"AddEventHandler('LMCore:Client:OnPlayerUnload', function()",
+			"RegisterNetEvent('NXCore:Client:OnPlayerUnload')",
+			"AddEventHandler('NXCore:Client:OnPlayerUnload', function()",
 			"    isLoggedIn = false",
 			"end)",
 			"",
-			"RegisterNetEvent('LMCore:Client:OnJobUpdate')",
-			"AddEventHandler('LMCore:Client:OnJobUpdate', function(JobInfo)",
+			"RegisterNetEvent('NXCore:Client:OnJobUpdate')",
+			"AddEventHandler('NXCore:Client:OnJobUpdate', function(JobInfo)",
 			"    PlayerJob = JobInfo",
 			"end)",
 			""
 		],
-		"description": "Client side code om de LMCore en base events in te laden."
+		"description": "Client side code om de NXCore base events in te laden."
 	},
 
 	"Notify:Server": {
 		"prefix": ["notify:server"],
-		"body": ["TriggerClientEvent(\"LMCore:Notify\", source, \"${1:message}\", \"${2:type}\", 3500)", ""],
+		"body": ["TriggerClientEvent(\"NXCore:Notify\", source, \"${1:message}\", \"${2:type}\", 3500)", ""],
 		"description": "Server side code om een notificatie te tonen."
 	},
 	"Notify:Client": {
-		"prefix": ["notify:client", "LMCore.Functions."],
-		"body": ["LMCore.Functions.Notify(\"${1:message}\", \"${2:type}\")", ""],
+		"prefix": ["notify:client", "NXCore.Functions."],
+		"body": ["NXCore.Functions.Notify(\"${1:message}\", \"${2:type}\")", ""],
 		"description": "Client side code om een notificatie te tonen."
 	},
 
 	"ShowHelp": {
-		"prefix": ["ShowHelp", "LMCore.Functions."],
-		"body": ["LMCore.Functions.ShowHelp(\"${1:message}\", \"${2:type}\")", ""],
+		"prefix": ["ShowHelp", "NXCore.Functions."],
+		"body": ["NXCore.Functions.ShowHelp(\"${1:message}\", \"${2:type}\")", ""],
 		"description": "Client side code ter vervanging voor DrawText3D."
 	},
 
 	"control:addcontrolablefield": {
-		"prefix": ["lm-control", "control", "lmcontrol", "addfield"],
+		"prefix": ["nx-control", "control", "nxcontrol", "addfield"],
 		"body": [
-			"exports[\"lm-control\"]:AddControlableField(GetCurrentResourceName(), '${1:name}', function() return ${2:Config.Cooldown} end, function(val) ${2:Config.Cooldown} = val end)",
+			"exports[\"nx-control\"]:AddControlableField(GetCurrentResourceName(), '${1:name}', function() return ${2:Config.Cooldown} end, function(val) ${2:Config.Cooldown} = val end)",
 			""
 		],
-		"description": "Register een LM-EYE interaction"
+		"description": "Register een NX-EYE interaction"
 	},
 
 	"CreateCallback": {
-		"prefix": ["CreateCallback", "RegisterCallback", "LMCore.Functions.CreateCallback"],
+		"prefix": ["CreateCallback", "RegisterCallback", "NXCore.Functions.CreateCallback"],
 		"body": [
-			"LMCore.Functions.CreateCallback('lm-${1:ResourceName}:server:${2:CallbackName}', function(source, cb, ...)",
+			"NXCore.Functions.CreateCallback('nx-${1:ResourceName}:server:${2:CallbackName}', function(source, cb, ...)",
 			"    local src = source",
-			"    local Player = LMCore.Functions.GetPlayer(src)",
+			"    local Player = NXCore.Functions.GetPlayer(src)",
 			"",
 			"    cb(true)",
 			"end)",
@@ -73,10 +73,10 @@
 	},
 
 	"TriggerCallback": {
-		"prefix": ["TriggerCallback", "LMCore.Functions.TriggerCallback"],
+		"prefix": ["TriggerCallback", "NXCore.Functions.TriggerCallback"],
 		"body": [
-			"LMCore.Functions.TriggerCallback('lm-${1:ResourceName}:server:${2:CallbackName}', function(retval)",
-			"    ${1}",
+			"NXCore.Functions.TriggerCallback('nx-${1:ResourceName}:server:${2:CallbackName}', function(retval)",
+			"    ${3}",
 			"end)",
 			""
 		],
@@ -84,11 +84,11 @@
 	},
 
 	"CreateUseableItem": {
-		"prefix": "LMCore.Functions.CreateUseableItem",
+		"prefix": "NXCore.Functions.CreateUseableItem",
 
 		"body": [
-			"LMCore.Functions.CreateUseableItem('${1:Item Naam}', function(source, item)",
-			"    local Player = LMCore.Functions.GetPlayer(source)",
+			"NXCore.Functions.CreateUseableItem('${1:Item Naam}', function(source, item)",
+			"    local Player = NXCore.Functions.GetPlayer(source)",
 			"    if Player.Functions.RemoveItem(item.name, 1, item.slot) then",
 			"        TriggerClientEvent(\"${2:Resource Naam}:client:Use\", source)",
 			"    end",
@@ -99,10 +99,10 @@
 	},
 
 	"CommandAdd": {
-		"prefix": ["LMCore.Commands.Add", "Add", "Command", "RegisterCommand", "AddCommand"],
+		"prefix": ["NXCore.Commands.Add", "Add", "Command", "RegisterCommand", "AddCommand"],
 
 		"body": [
-			"LMCore.Commands.Add('${1:Command Naam}', '${2:Command Desc}', {{name='${3:arg name}', help='${4:arg help}'}}, false, function(source, args)",
+			"NXCore.Commands.Add('${1:Command Naam}', '${2:Command Desc}', {{name='${3:arg name}', help='${4:arg help}'}}, false, function(source, args)",
 			"",
 			"end, '${5:perm}')",
 			""
@@ -112,7 +112,13 @@
 
 	"Player": {
 		"prefix": ["Player", "GetPlayer"],
-		"body": ["local Player = LMCore.Functions.GetPlayer(source)", ""],
+		"body": ["local Player = NXCore.Functions.GetPlayer(source)", ""],
 		"description": "Get the player object"
+	},
+
+	"LocalPlayer.state.isLoggedIn": {
+		"prefix": ["LocalPlayer.state.isLoggedIn", "isLoggedIn"],
+		"body": ["if LocalPlayer.state.isLoggedIn then", ""],
+		"description": "Is the player logged in?"
 	}
 }

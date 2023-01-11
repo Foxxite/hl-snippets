@@ -1,13 +1,13 @@
 {
 	"publisher": "Foxxite",
-	"name": "lm-snippets",
-	"displayName": "LM Snippets",
-	"description": "Code snippets for the LMCore and resources",
-	"version": "0.0.2",
+	"name": "nx-snippets",
+	"displayName": "Nexus Snippets",
+	"description": "Code snippets for the NXCore and resources",
+	"version": "0.0.4",
 	"icon": "images/logo.png",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Foxxite/lm-snippets.git"
+		"url": "https://github.com/Foxxite/nx-snippets.git"
 	},
 	"engines": {
 		"vscode": "^1.59.0"
